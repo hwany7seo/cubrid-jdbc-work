@@ -15,26 +15,30 @@
 #   limitations under the License.
 # 
 #
+file(STRINGS ${CMAKE_CURRENT_SOURCE_DIR}/VERSION VERSION_STR)
+set(JDBC_VERSION VERSION_STR)
+message(STATUS "  HWANYSEO CMAKE_CURRENT_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}")
+message(STATUS "  HWANYSEO JDBC_VERSION=${JDBC_VERSION}")
 
 add_custom_target(jdbc_build ALL
   COMMAND ${CMAKE_COMMAND} -E make_directory src
-  COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/${VERSION_FILE} src/CUBRID-JDBC-${BUILD_NUMBER}
-  COMMAND ${ANT} dist-cubrid -buildfile ${CMAKE_SOURCE_DIR}/jdbc/build.xml -Dbasedir=. -Dversion=${BUILD_NUMBER} -Dsrc=${JDBC_DIR}
+  COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/VERSION src/CUBRID-JDBC-${JDBC_VERSION}
+  COMMAND ${ANT} dist-cubrid -buildfile ${CMAKE_SOURCE_DIR}/cubrid-jdbc/build.xml -Dbasedir=. -Dversion=${JDBC_VERSION} -Dsrc=${JDBC_EXTERNAL_DIR}
   COMMENT "Build JDBC driver with Ant ..."
   )
 if(UNIX)
   add_custom_command(TARGET jdbc_build POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E create_symlink JDBC-${BUILD_NUMBER}-cubrid.jar cubrid_jdbc.jar
+    COMMAND ${CMAKE_COMMAND} -E create_symlink JDBC-${JDBC_VERSION}-cubrid.jar cubrid_jdbc.jar
     )
 else(UNIX)
   add_custom_command(TARGET jdbc_build POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy JDBC-${BUILD_NUMBER}-cubrid.jar cubrid_jdbc.jar
+    COMMAND ${CMAKE_COMMAND} -E copy JDBC-${JDBC_VERSION}-cubrid.jar cubrid_jdbc.jar
     )
 endif(UNIX)
 
 
 install(FILES
-  ${CMAKE_CURRENT_BINARY_DIR}/JDBC-${BUILD_NUMBER}-cubrid.jar
+  ${CMAKE_CURRENT_BINARY_DIR}/JDBC-${JDBC_VERSION}-cubrid.jar
   ${CMAKE_CURRENT_BINARY_DIR}/cubrid_jdbc.jar
-  ${CMAKE_CURRENT_BINARY_DIR}/JDBC-${BUILD_NUMBER}-cubrid-src.jar
+  ${CMAKE_CURRENT_BINARY_DIR}/JDBC-${JDBC_VERSION}-cubrid-src.jar
   DESTINATION ${CUBRID_JDBCDIR} COMPONENT JDBC)
