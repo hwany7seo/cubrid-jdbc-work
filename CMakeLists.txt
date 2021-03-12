@@ -19,24 +19,23 @@ file(STRINGS ${CMAKE_CURRENT_SOURCE_DIR}/VERSION JDBC_VERSION)
 message(STATUS "JDBC_VERSION=${JDBC_VERSION}")
 
 add_custom_target(jdbc_build ALL
-  COMMAND ${CMAKE_COMMAND} -E make_directory src
+  COMMAND ${CMAKE_COMMAND} -E make_directory output
   COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/VERSION output/CUBRID-JDBC-${JDBC_VERSION}
   COMMAND ${ANT} dist-cubrid -buildfile ${CMAKE_SOURCE_DIR}/cubrid-jdbc/build.xml -Dbasedir=. -Dversion=${JDBC_VERSION} -Dsrc=${JDBC_EXTERNAL_DIR}
   COMMENT "Build JDBC driver with Ant ..."
   )
 if(UNIX)
   add_custom_command(TARGET jdbc_build POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E create_symlink output/JDBC-${JDBC_VERSION}-cubrid.jar output/cubrid_jdbc.jar
+    COMMAND ${CMAKE_COMMAND} -E create_symlink JDBC-${JDBC_VERSION}-cubrid.jar cubrid_jdbc.jar
     )
 else(UNIX)
   add_custom_command(TARGET jdbc_build POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy output/JDBC-${JDBC_VERSION}-cubrid.jar output/cubrid_jdbc.jar
+    COMMAND ${CMAKE_COMMAND} -E copy JDBC-${JDBC_VERSION}-cubrid.jar cubrid_jdbc.jar
     )
 endif(UNIX)
 
-
 install(FILES
-  ${CMAKE_CURRENT_BINARY_DIR}/output/JDBC-${JDBC_VERSION}-cubrid.jar
-  ${CMAKE_CURRENT_BINARY_DIR}/output/cubrid_jdbc.jar
-  ${CMAKE_CURRENT_BINARY_DIR}/output/JDBC-${JDBC_VERSION}-cubrid-src.jar
+  ${CMAKE_CURRENT_BINARY_DIR}/JDBC-${JDBC_VERSION}-cubrid.jar
+  ${CMAKE_CURRENT_BINARY_DIR}/cubrid_jdbc.jar
+  ${CMAKE_CURRENT_BINARY_DIR}/JDBC-${JDBC_VERSION}-cubrid-src.jar
   DESTINATION ${CUBRID_JDBCDIR} COMPONENT JDBC)
