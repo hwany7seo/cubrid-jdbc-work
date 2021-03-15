@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008 Search Solution Corporation. 
+ * Copyright (C) 2008 Search Solution Corporation.
  * Copyright (c) 2016 CUBRID Corporation.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -40,26 +40,23 @@ import javax.naming.spi.ObjectFactory;
 
 /**
  * Title: CUBRID JDBC Driver Description:
- * 
+ *
  * @version 3.0
  */
-
 public class CUBRIDDataSourceObjectFactory implements ObjectFactory {
-	public Object getObjectInstance(Object refObj, Name name, Context nameCtx,
-			Hashtable<?, ?> env) throws Exception {
-		Reference ref = (Reference) refObj;
+    public Object getObjectInstance(Object refObj, Name name, Context nameCtx, Hashtable<?, ?> env)
+            throws Exception {
+        Reference ref = (Reference) refObj;
 
-		if (ref.getClassName().equals("cubrid.jdbc.driver.CUBRIDDataSource")) {
-			return (new CUBRIDDataSource(ref));
-		}
-		if (ref.getClassName().equals(
-				"cubrid.jdbc.driver.CUBRIDConnectionPoolDataSource")) {
-			return (new CUBRIDConnectionPoolDataSource(ref));
-		}
-		if (ref.getClassName().equals("cubrid.jdbc.driver.CUBRIDXADataSource")) {
-			return (new CUBRIDXADataSource(ref));
-		}
-		return null;
-	}
-
+        if (ref.getClassName().equals("cubrid.jdbc.driver.CUBRIDDataSource")) {
+            return (new CUBRIDDataSource(ref));
+        }
+        if (ref.getClassName().equals("cubrid.jdbc.driver.CUBRIDConnectionPoolDataSource")) {
+            return (new CUBRIDConnectionPoolDataSource(ref));
+        }
+        if (ref.getClassName().equals("cubrid.jdbc.driver.CUBRIDXADataSource")) {
+            return (new CUBRIDXADataSource(ref));
+        }
+        return null;
+    }
 }
