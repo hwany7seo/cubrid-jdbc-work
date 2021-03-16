@@ -21,15 +21,15 @@ Below You will see the brief list of sections to guide You to easily get started
 ### CUBRID JDBC Driver Source Build Guide (ANT Project)
 - Windows
   ```
-  build.bat (BUILD)
-  build.bat clean (CLEAN-BUILD)
+  build.bat 
+  build.bat clean 
   ```
     
 - Linux
 
   ```
-  ./build.sh Or make (BUILD)
-  ./build.sh claen Or make clean (CLEAN-BUILD)
+  ./build.sh 
+  ./build.sh claen
   ```
 	
 ### CUBRID JDBC Driver Installation Guide for Windows/Linux Users
