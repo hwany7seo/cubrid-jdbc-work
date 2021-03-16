@@ -1,4 +1,4 @@
-CUBRID Database Management System
+##CUBRID Database Management System
 ==========================
 CUBRID is a DBMS being supported by an active community of open source developers 
 and provides better performance and features necessary for Web services. 
@@ -9,22 +9,29 @@ For details, please refer to the CUBRID License Page(http://www.cubrid.org/cubri
 
 Below You will see the brief list of sections to guide You to easily get started. 
 
-MAJOR REFERENCES
+##MAJOR REFERENCES
 ================
 - CUBRID Official Site: http://www.cubrid.org ,  http://www.cubrid.com
 - CUBRID Development Site(Global): http://jira.cubrid.org
 - CUBRID Manuals: http://www.cubrid.org/manuals 
 
-DOWNLOADS and FILE REPOSITORIES
+##DOWNLOADS and FILE REPOSITORIES
 =====================
 - http://www.cubrid.org/downloads
 - http://ftp.cubrid.org
 
-HOW TO BUILD/INSTALL CUBRID JDBC Driver
+##HOW TO BUILD/INSTALL CUBRID JDBC Driver
 =====================
 - CUBRID JDBC Driver Source Build Guide (ANT Project)
-    Windows : build.bat
-	Linux : build.sh
+    '''
+    Windows : build.bat (BUILD)
+              build.bat clean (CLEAN-BUILD)
+    '''
+
+    '''
+    Linux : ./build.sh Or make (BUILD)
+            ./build.sh claen Or make clean (CLEAN-BUILD)
+    '''
 	
 - CUBRID JDBC Driver Installation Guide for Windows/Linux Users
 	CUBRID JDBC driver (jar File) implements an interface to enable access 
