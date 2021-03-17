@@ -44,23 +44,10 @@ else
   version="external"
 fi
 
-# check Git
-echo "[INFO] Checking for Git"
-which_git=$(which git)
-[ $? -eq 0 ] && echo "[INFO] found $which_git" || echo "[CHECK] Git not found"
-echo "[INFO] OK"
-
-major_start_date='2021-03-01'
-if [ -d $cur_dir/.git ]; then
-  extra_version=$(cd $cur_dir && git rev-list --after $major_start_date --count HEAD | awk '{ printf "%04d", $1 }' 2> /dev/null)
-else
-  extra_version=0000
-fi
-
-echo "[INFO] VERSION = $version.$extra_version"
+echo "[INFO] VERSION = $version"
 
 if [ ! -d $cur_dir/output ]; then
   mkdir -p $cur_dir/output
 fi
-cp -rfv $cur_dir/VERSION $cur_dir/output/CUBRID-JDBC-$version.$extra_version
-$ant_file dist-cubrid -buildfile $cur_dir/build.xml -Dbasedir=. -Dversion=$version.$extra_version -Dsrc=./src
+cp -rfv $cur_dir/VERSION $cur_dir/output/CUBRID-JDBC-$version
+$ant_file dist-cubrid -buildfile $cur_dir/build.xml -Dbasedir=. -Dversion=$version -Dsrc=./src
