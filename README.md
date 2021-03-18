@@ -12,13 +12,15 @@ Below You will see the brief list of sections to guide You to easily get started
 - CUBRID Official Site: http://www.cubrid.org ,  http://www.cubrid.com
 - CUBRID Development Site(Global): http://jira.cubrid.org
 - CUBRID Manuals: http://www.cubrid.org/manuals 
+- CUBRID JDBC Manuals (V11.0) : https://www.cubrid.org/manual/en/11.0/api/jdbc.html (Eng)
+                                https://www.cubrid.org/manual/ko/11.0/api/jdbc.html (Kor)
 
 ## DOWNLOADS and FILE REPOSITORIES
 - http://www.cubrid.org/downloads
 - http://ftp.cubrid.org
 
 ## HOW TO BUILD/INSTALL CUBRID JDBC Driver
-### CUBRID JDBC Driver Source Build Guide (ANT Project)
+### CUBRID JDBC Driver Source Build Guide (ANT Build Project)
 - Windows
   ```
   build.bat 
@@ -31,9 +33,9 @@ Below You will see the brief list of sections to guide You to easily get started
   ./build.sh 
   ./build.sh claen
   ```
-	
+
 ### CUBRID JDBC Driver Installation Guide for Windows/Linux Users
-- CUBRID JDBC driver (jar File) implements an interface to enable access 
+- CUBRID JDBC driver (JAR File) implements an interface to enable access 
   from applications in Java to CUBRID database server. 
   The driver has been developed based on the JDBC 2.0 specification 
   and the default driver provided is complied with JDK 1.6.
